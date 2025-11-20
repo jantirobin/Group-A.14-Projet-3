@@ -1,6 +1,7 @@
 from microbit import *
 import radio
 import log
+import music
 
 radio.config(group=32) #l'alimentation pour recevoir les msgs etc pour microbit
 
@@ -76,4 +77,55 @@ while True:
     display.clear()
     sleep(1000)
     #apres avoir appure les boutons A ou B (appui long) A va afficher la temp min, et B va afficher la temp max
+
+#def de la boucle de demande de nourrir et son clear
+def nourrir() :
+
+    index = 0
     
+    while True  :
+        
+        if  button_b.was_pressed() :
+
+            display.clear()
+
+            index += 1 
+
+            return index
+
+        else :
+
+            faim = [Image.ANGRY, Image.ARROW_S]
+
+            display.show(faim, delay=1000, loop=False)
+
+            music.play(music.BA_DING)
+
+#fait en sorrte que l'alarme se joue toute les 3h et que on puisse utiliser les boutons peit importe le moment.
+while True :
+
+    index = 1
+    temps_alerte = 10000
+    
+    début = running_time()
+  
+    while True :
+        
+        if button_a.was_pressed() :
+            
+            display.show(index)
+            
+            sleep(2000)
+            
+            display.clear()
+
+           
+        
+        elif running_time() - début >= temps_alerte : 
+
+            nourrir() 
+                
+            index +=1
+
+            début = running_time()
+            
