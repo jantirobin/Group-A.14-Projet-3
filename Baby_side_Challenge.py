@@ -161,7 +161,7 @@ def main():
 """calcul le nv de lumière pour pouvoir couper la lumière des leds du be:bi"""
 	while True  :
 
-    	if display.read_light_level() < 28 :
+    	if display.read_light_level() < 25 :
             
             for larg in range(5) :
                 
