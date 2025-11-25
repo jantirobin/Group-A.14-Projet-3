@@ -157,3 +157,14 @@ def etat_sommeil_bebe():
 
 def main():
     return True
+
+"""calcul le nv de lumière pour pouvoir couper la lumière des leds du be:bi"""
+	while True  :
+
+    	if display.read_light_level() < 28 :
+            
+            for larg in range(5) :
+                
+                for haut in range(5) :
+                   
+                    display.set_pixel(larg,haut,0)
